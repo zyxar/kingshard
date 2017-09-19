@@ -26,7 +26,6 @@ import (
 
 	"github.com/flike/kingshard/config"
 	"github.com/flike/kingshard/core/golog"
-	"github.com/flike/kingshard/core/hack"
 	"github.com/flike/kingshard/proxy/server"
 	"github.com/flike/kingshard/web"
 )
@@ -50,12 +49,16 @@ const banner string = `
              /____/
 `
 
+var (
+	Version   string
+	BuildTime string
+)
+
 func main() {
-	fmt.Print(banner)
+	fmt.Println(banner)
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	flag.Parse()
-	fmt.Printf("Git commit:%s\n", hack.Version)
-	fmt.Printf("Build time:%s\n", hack.Compile)
+	fmt.Printf("\nVersion   : %s\nBuild Time: %s\n\n", Version, BuildTime)
 	if *version {
 		return
 	}
